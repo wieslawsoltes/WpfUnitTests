@@ -15,7 +15,7 @@ namespace WpfGridTest
     { 
         private readonly ITestOutputHelper output;
 
-        public MyTestClass(ITestOutputHelper output)
+        public WpfGridTest(ITestOutputHelper output)
         {
             this.output = output;
         }
