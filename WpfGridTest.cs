@@ -70,14 +70,14 @@ namespace WpfGridTest
             root.Measure(new Size(50, 50));
             root.Arrange(new Rect(new Point(), new Point(50, 50)));
             PrintColumnDefinitions(grids[0].ColumnDefinitions);
-            Assert.Equal(1, grids[0].ColumnDefinitions[0].ActualWidth);
+            Assert.Equal(0, grids[0].ColumnDefinitions[0].ActualWidth);
 
             grids[0].ColumnDefinitions[0].SharedSizeGroup = "A";
 
             root.Measure(new Size(51, 51));
             root.Arrange(new Rect(new Point(), new Point(51, 51)));
             PrintColumnDefinitions(grids[0].ColumnDefinitions);
-            Assert.Equal(31, grids[0].ColumnDefinitions[0].ActualWidth);
+            Assert.Equal(30, grids[0].ColumnDefinitions[0].ActualWidth);
 
             grids[0].ColumnDefinitions[0].SharedSizeGroup = null;
 
