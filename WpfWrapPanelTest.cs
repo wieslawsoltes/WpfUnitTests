@@ -35,7 +35,7 @@ namespace WpfWrapPanelTest
             this.output = output;
         }
 
-        [Fact]
+        [WpfFact]
         public void Lays_Out_Horizontally_On_Separate_Lines()
         {
             var target = new WrapPanel()
@@ -56,7 +56,7 @@ namespace WpfWrapPanelTest
             Assert.Equal(new Rect(0, 50, 100, 50), target.Children[1].BoundsRelativeTo(target));
         }
 
-        [Fact]
+        [WpfFact]
         public void Lays_Out_Horizontally_On_A_Single_Line()
         {
             var target = new WrapPanel()
@@ -77,7 +77,7 @@ namespace WpfWrapPanelTest
             Assert.Equal(new Rect(100, 0, 100, 50), target.Children[1].BoundsRelativeTo(target));
         }
 
-        [Fact]
+        [WpfFact]
         public void Lays_Out_Vertically_Children_On_A_Single_Line()
         {
             var target = new WrapPanel()
@@ -99,7 +99,7 @@ namespace WpfWrapPanelTest
             Assert.Equal(new Rect(0, 50, 100, 50), target.Children[1].BoundsRelativeTo(target));
         }
 
-        [Fact]
+        [WpfFact]
         public void Lays_Out_Vertically_On_Separate_Lines()
         {
             var target = new WrapPanel()
