@@ -14,7 +14,7 @@ namespace WpfWrapPanelTest
 {
     public static class FrameworkElementExtensions
     {
-        public static Rect BoundsRelativeTo(this UIElement, Visual relativeTo)
+        public static Rect BoundsRelativeTo(this UIElement element, Visual relativeTo)
         {
           return
             element.TransformToVisual(relativeTo)
