@@ -128,7 +128,7 @@ namespace WpfGridTest
             grid.Measure(new Size(200, 200));
             grid.Arrange(new Rect(new Point(), new Point(200, 200)));
             PrintColumnDefinitions(grid);
-            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(35, cd.ActualWidth));
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(30, cd.ActualWidth));
 
             grid.ColumnDefinitions[1] = new ColumnDefinition { Width = new GridLength(50), SharedSizeGroup = "A" };
 
