@@ -27,7 +27,7 @@ namespace WpfWrapPanelTest
     }
 
     public class WpfWrapPanelTest
-    { 
+    {
         private readonly ITestOutputHelper output;
 
         public WpfWrapPanelTest(ITestOutputHelper output)
@@ -39,14 +39,14 @@ namespace WpfWrapPanelTest
         public void Lays_Out_Horizontally_On_Separate_Lines()
         {
             var target = new WrapPanel()
-                         {
-                            Width = 100,
-                            Children =
+            {
+                Width = 100,
+                Children =
                             {
                                 new Border { Height = 50, Width = 100 },
                                 new Border { Height = 50, Width = 100 },
                             }
-                         };
+            };
 
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             target.Arrange(new Rect(target.DesiredSize));
@@ -60,14 +60,14 @@ namespace WpfWrapPanelTest
         public void Lays_Out_Horizontally_On_A_Single_Line()
         {
             var target = new WrapPanel()
-                         {
-                            Width = 200,
-                            Children =
+            {
+                Width = 200,
+                Children =
                             {
                                 new Border { Height = 50, Width = 100 },
                                 new Border { Height = 50, Width = 100 },
                             }
-                         };
+            };
 
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             target.Arrange(new Rect(target.DesiredSize));
@@ -81,15 +81,15 @@ namespace WpfWrapPanelTest
         public void Lays_Out_Vertically_Children_On_A_Single_Line()
         {
             var target = new WrapPanel()
-                         {
-                            Orientation = Orientation.Vertical,
-                            Height = 120,
-                            Children =
+            {
+                Orientation = Orientation.Vertical,
+                Height = 120,
+                Children =
                             {
                                 new Border { Height = 50, Width = 100 },
                                 new Border { Height = 50, Width = 100 },
                             }
-                         };
+            };
 
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             target.Arrange(new Rect(target.DesiredSize));
@@ -103,15 +103,15 @@ namespace WpfWrapPanelTest
         public void Lays_Out_Vertically_On_Separate_Lines()
         {
             var target = new WrapPanel()
-                         {
-                            Orientation = Orientation.Vertical,
-                            Height = 60,
-                            Children =
+            {
+                Orientation = Orientation.Vertical,
+                Height = 60,
+                Children =
                             {
                                 new Border { Height = 50, Width = 100 },
                                 new Border { Height = 50, Width = 100 },
                             }
-                         };
+            };
 
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             target.Arrange(new Rect(target.DesiredSize));
