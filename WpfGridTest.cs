@@ -12,7 +12,7 @@ using Xunit.Abstractions;
 namespace WpfGridTest
 {
     public class WpfGridTest
-    { 
+    {
         private readonly ITestOutputHelper output;
 
         public WpfGridTest(ITestOutputHelper output)
@@ -901,12 +901,12 @@ namespace WpfGridTest
                 CreateGrid((null, new GridLength(0, GridUnitType.Auto)), (null, new GridLength())),
                 CreateGrid(("A", new GridLength(30)), (null, new GridLength())) };
             var scope = new Grid();
-            foreach(var xgrids in grids)
-            scope.Children.Add(xgrids);
+            foreach (var xgrids in grids)
+                scope.Children.Add(xgrids);
 
             var root = new Grid();
             root.SetValue(Grid.IsSharedSizeScopeProperty, true);
-                        root.Children.Add(scope);
+            root.Children.Add(scope);
 
             root.Measure(new Size(50, 50));
             root.Arrange(new Rect(new Point(), new Point(50, 50)));
@@ -942,7 +942,7 @@ namespace WpfGridTest
 
             var root = new Grid();
             root.SetValue(Grid.IsSharedSizeScopeProperty, true);
-                        root.Children.Add(scope);
+            root.Children.Add(scope);
 
             grid.Measure(new Size(200, 200));
             grid.Arrange(new Rect(new Point(), new Point(200, 200)));
@@ -995,13 +995,13 @@ namespace WpfGridTest
 
             var root = new Grid();
             root.SetValue(Grid.IsSharedSizeScopeProperty, true);
-                        root.Children.Add(scope);
+            root.Children.Add(scope);
 
             grid.Measure(new Size(100, 100));
             grid.Arrange(new Rect(new Point(), new Point(100, 100)));
             PrintColumnDefinitions(grid);
             // all in group are equal to the first fixed column
-            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(19, cd.ActualWidth -1));
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(19, cd.ActualWidth - 1));
 
             grid.ColumnDefinitions[0].SharedSizeGroup = null;
 
@@ -1034,7 +1034,7 @@ namespace WpfGridTest
 
             var root = new Grid();
             root.SetValue(Grid.IsSharedSizeScopeProperty, true);
-                        root.Children.Add(scope);
+            root.Children.Add(scope);
 
             grid.Measure(new Size(200, 200));
             grid.Arrange(new Rect(new Point(), new Point(200, 200)));
@@ -1067,7 +1067,7 @@ namespace WpfGridTest
 
             var root = new Grid();
             root.SetValue(Grid.IsSharedSizeScopeProperty, true);
-                        root.Children.Add(scope);
+            root.Children.Add(scope);
 
             grid.Measure(new Size(200, 200));
             grid.Arrange(new Rect(new Point(), new Point(200, 200)));
@@ -1110,16 +1110,16 @@ namespace WpfGridTest
 
         private Grid CreateGrid(params (string name, GridLength width, double minWidth, double maxWidth)[] columns)
         {
-            
+
             var grid = new Grid();
-            foreach(var k in                     columns.Select(c => new ColumnDefinition
-                    {
-                        SharedSizeGroup = c.name,
-                        Width = c.width,
-                        MinWidth = c.minWidth,
-                        MaxWidth = c.maxWidth
-                    }))
-                    grid.ColumnDefinitions.Add(k);
+            foreach (var k in columns.Select(c => new ColumnDefinition
+            {
+                SharedSizeGroup = c.name,
+                Width = c.width,
+                MinWidth = c.minWidth,
+                MaxWidth = c.maxWidth
+            }))
+                grid.ColumnDefinitions.Add(k);
 
             return grid;
         }
