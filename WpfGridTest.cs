@@ -26,6 +26,12 @@ namespace WpfGridTest
                 var cd = grid.ColumnDefinitions[i];
                 output.WriteLine($"[{i}] ActualWidth: {cd.ActualWidth} SharedSizeGroup: {cd.SharedSizeGroup}");
             }
+            output.WriteLine($"[RowDefinitions]");
+            for (int i = 0; i < grid.RowDefinitions.Count; i++)
+            {
+                var rd = grid.ColumnDefinitions[i];
+                output.WriteLine($"[{i}] ActualWidth: {rd.ActualWidth} SharedSizeGroup: {rd.SharedSizeGroup}");
+            }
         }
 
         [WpfFact]
