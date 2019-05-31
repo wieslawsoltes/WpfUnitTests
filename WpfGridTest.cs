@@ -307,7 +307,7 @@ namespace WpfGridTest
                 ("A", new GridLength()),
                 ("A", new GridLength()),
                 ("A", new GridLength()),
-                (null, new GridLength());
+                (null, new GridLength()));
 
             var scope = new Grid();
             scope.Children.Add(grid);
@@ -330,7 +330,7 @@ namespace WpfGridTest
                 ("A", new GridLength(50)),
                 ("A", new GridLength(50)),
                 ("A", new GridLength(50)),
-                (null, new GridLength());
+                (null, new GridLength()));
 
             var scope = new Grid();
             scope.Children.Add(grid);
@@ -353,7 +353,7 @@ namespace WpfGridTest
                 ("A", new GridLength(0, GridUnitType.Auto)),
                 ("A", new GridLength(0, GridUnitType.Auto)),
                 ("A", new GridLength(0, GridUnitType.Auto)),
-                (null, new GridLength());
+                (null, new GridLength()));
 
             var scope = new Grid();
             scope.Children.Add(grid);
@@ -400,7 +400,7 @@ namespace WpfGridTest
                 ("A", new GridLength()),
                 ("A", new GridLength()),
                 ("A", new GridLength()),
-                (null, new GridLength());
+                (null, new GridLength()));
 
             var scope = new Grid();
             scope.Children.Add(grid);
@@ -424,7 +424,7 @@ namespace WpfGridTest
                 ("A", new GridLength(50)),
                 ("A", new GridLength(50)),
                 ("A", new GridLength(50)),
-                (null, new GridLength());
+                (null, new GridLength()));
 
             var scope = new Grid();
             scope.Children.Add(grid);
@@ -448,7 +448,7 @@ namespace WpfGridTest
                 ("A", new GridLength(0, GridUnitType.Auto)),
                 ("A", new GridLength(0, GridUnitType.Auto)),
                 ("A", new GridLength(0, GridUnitType.Auto)),
-                (null, new GridLength());
+                (null, new GridLength()));
 
             var scope = new Grid();
             scope.Children.Add(grid);
@@ -472,7 +472,7 @@ namespace WpfGridTest
                 ("A", new GridLength(1, GridUnitType.Star)), // Star sizing is treated as Auto, 1 is ignored
                 ("A", new GridLength(1, GridUnitType.Star)), // Star sizing is treated as Auto, 1 is ignored
                 ("A", new GridLength(1, GridUnitType.Star)), // Star sizing is treated as Auto, 1 is ignored
-                (null, new GridLength());
+                (null, new GridLength()));
 
             var scope = new Grid();
             scope.Children.Add(grid);
