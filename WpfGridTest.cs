@@ -962,10 +962,10 @@ namespace WpfGridTest
             grid.ColumnDefinitions.Insert(1, new ColumnDefinition { Width = new GridLength(30), SharedSizeGroup = "A" });
 
             // NOTE: THIS IS BROKEN IN WPF
-            //grid.Measure(new Size(200, 200));
-            //grid.Arrange(new Rect(new Point(), new Point(200, 200)));
-            //PrintColumnDefinitions(grid);
-            //Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(30, cd.ActualWidth));
+            grid.Measure(new Size(200, 200));
+            grid.Arrange(new Rect(new Point(), new Point(200, 200)));
+            PrintColumnDefinitions(grid);
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(30, cd.ActualWidth));
 
             grid.ColumnDefinitions[1] = new ColumnDefinition { Width = new GridLength(10), SharedSizeGroup = "A" };
 
@@ -973,15 +973,73 @@ namespace WpfGridTest
             grid.Arrange(new Rect(new Point(), new Point(200, 200)));
             PrintColumnDefinitions(grid);
             Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(30, cd.ActualWidth));
+            /* output after previous line:
+            [Grid] ActualWidth: 200 ActualHeight: 200
+            [ColumnDefinitions]
+            [0] ActualWidth: 40 SharedSizeGroup: A
+            [1] ActualWidth: 40 SharedSizeGroup: A
+            [2] ActualWidth: 40 SharedSizeGroup: A
+            [3] ActualWidth: 0 SharedSizeGroup: 
+            [RowDefinitions]
+            [Grid] ActualWidth: 200 ActualHeight: 200
+            [ColumnDefinitions]
+            [0] ActualWidth: 30 SharedSizeGroup: A
+            [1] ActualWidth: 30 SharedSizeGroup: A
+            [2] ActualWidth: 0 SharedSizeGroup: 
+            [RowDefinitions]
+            [Grid] ActualWidth: 200 ActualHeight: 200
+            [ColumnDefinitions]
+            [0] ActualWidth: 30 SharedSizeGroup: A
+            [1] ActualWidth: 30 SharedSizeGroup: A
+            [2] ActualWidth: 30 SharedSizeGroup: A
+            [3] ActualWidth: 0 SharedSizeGroup: 
+            [RowDefinitions]
+            [Grid] ActualWidth: 200 ActualHeight: 200
+            [ColumnDefinitions]
+            [0] ActualWidth: 0 SharedSizeGroup: A
+            [1] ActualWidth: 60 SharedSizeGroup: A
+            [2] ActualWidth: 30 SharedSizeGroup: A
+            [3] ActualWidth: 0 SharedSizeGroup: 
+            [RowDefinitions]
+            */
 
             // NOTE: THIS IS BROKEN IN WPF
-            //grid.ColumnDefinitions[1] = new ColumnDefinition { Width = new GridLength(50), SharedSizeGroup = "A" };
+            grid.ColumnDefinitions[1] = new ColumnDefinition { Width = new GridLength(50), SharedSizeGroup = "A" };
 
             // NOTE: THIS IS BROKEN IN WPF
-            //grid.Measure(new Size(200, 200));
-            //grid.Arrange(new Rect(new Point(), new Point(200, 200)));
-            //PrintColumnDefinitions(grid);
-            //Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(0, cd.ActualWidth));
+            grid.Measure(new Size(200, 200));
+            grid.Arrange(new Rect(new Point(), new Point(200, 200)));
+            PrintColumnDefinitions(grid);
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(0, cd.ActualWidth));
+            /* output after previous line:
+            [Grid] ActualWidth: 200 ActualHeight: 200
+            [ColumnDefinitions]
+            [0] ActualWidth: 40 SharedSizeGroup: A
+            [1] ActualWidth: 40 SharedSizeGroup: A
+            [2] ActualWidth: 40 SharedSizeGroup: A
+            [3] ActualWidth: 0 SharedSizeGroup: 
+            [RowDefinitions]
+            [Grid] ActualWidth: 200 ActualHeight: 200
+            [ColumnDefinitions]
+            [0] ActualWidth: 30 SharedSizeGroup: A
+            [1] ActualWidth: 30 SharedSizeGroup: A
+            [2] ActualWidth: 0 SharedSizeGroup: 
+            [RowDefinitions]
+            [Grid] ActualWidth: 200 ActualHeight: 200
+            [ColumnDefinitions]
+            [0] ActualWidth: 30 SharedSizeGroup: A
+            [1] ActualWidth: 30 SharedSizeGroup: A
+            [2] ActualWidth: 30 SharedSizeGroup: A
+            [3] ActualWidth: 0 SharedSizeGroup: 
+            [RowDefinitions]
+            [Grid] ActualWidth: 200 ActualHeight: 200
+            [ColumnDefinitions]
+            [0] ActualWidth: 0 SharedSizeGroup: A
+            [1] ActualWidth: 60 SharedSizeGroup: A
+            [2] ActualWidth: 30 SharedSizeGroup: A
+            [3] ActualWidth: 0 SharedSizeGroup: 
+            [RowDefinitions]
+            */
         }
 
         [WpfFact]
