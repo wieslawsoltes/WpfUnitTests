@@ -31,6 +31,226 @@ namespace WpfGridTest
             }
         }
 
+        [WpfFact]
+        public void Grid_GridLength_Same_Size_Pixel_0()
+        {
+            var grid = CreateGrid(
+                (null, new GridLength()),
+                (null, new GridLength()),
+                (null, new GridLength()),
+                (null, new GridLength()));
+
+            var scope = new Grid();
+            scope.Children.Add(grid);
+
+            var root = new Grid();
+            root.SetValue(Grid.IsSharedSizeScopeProperty, false);
+            root.Children.Add(scope);
+
+            grid.Measure(new Size(200, 200));
+            grid.Arrange(new Rect(new Point(), new Point(200, 200)));
+            PrintColumnDefinitions(grid);
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == null), cd => Assert.Equal(0, cd.ActualWidth));
+        }
+
+        [WpfFact]
+        public void Grid_GridLength_Same_Size_Pixel_50()
+        {
+            var grid = CreateGrid(
+                (null, new GridLength(50)),
+                (null, new GridLength(50)),
+                (null, new GridLength(50)),
+                (null, new GridLength(50)));
+
+            var scope = new Grid();
+            scope.Children.Add(grid);
+
+            var root = new Grid();
+            root.SetValue(Grid.IsSharedSizeScopeProperty, false);
+            root.Children.Add(scope);
+
+            grid.Measure(new Size(200, 200));
+            grid.Arrange(new Rect(new Point(), new Point(200, 200)));
+            PrintColumnDefinitions(grid);
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == null), cd => Assert.Equal(50, cd.ActualWidth));
+        }
+
+        [WpfFact]
+        public void Grid_GridLength_Same_Size_Auto()
+        {
+            var grid = CreateGrid(
+                (null, new GridLength(0, GridUnitType.Auto)),
+                (null, new GridLength(0, GridUnitType.Auto)),
+                (null, new GridLength(0, GridUnitType.Auto)),
+                (null, new GridLength(0, GridUnitType.Auto)));
+
+            var scope = new Grid();
+            scope.Children.Add(grid);
+
+            var root = new Grid();
+            root.SetValue(Grid.IsSharedSizeScopeProperty, false);
+            root.Children.Add(scope);
+
+            grid.Measure(new Size(200, 200));
+            grid.Arrange(new Rect(new Point(), new Point(200, 200)));
+            PrintColumnDefinitions(grid);
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == null), cd => Assert.Equal(50, cd.ActualWidth));
+        }
+
+        [WpfFact]
+        public void Grid_GridLength_Same_Size_Auto()
+        {
+            var grid = CreateGrid(
+                (null, new GridLength(0, GridUnitType.Auto)),
+                (null, new GridLength(0, GridUnitType.Auto)),
+                (null, new GridLength(0, GridUnitType.Auto)),
+                (null, new GridLength(0, GridUnitType.Auto)));
+
+            var scope = new Grid();
+            scope.Children.Add(grid);
+
+            var root = new Grid();
+            root.SetValue(Grid.IsSharedSizeScopeProperty, false);
+            root.Children.Add(scope);
+
+            grid.Measure(new Size(200, 200));
+            grid.Arrange(new Rect(new Point(), new Point(200, 200)));
+            PrintColumnDefinitions(grid);
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == null), cd => Assert.Equal(50, cd.ActualWidth));
+        }
+
+        [WpfFact]
+        public void Grid_GridLength_Same_Size_Star()
+        {
+            var grid = CreateGrid(
+                (null, new GridLength(0, GridUnitType.Star)),
+                (null, new GridLength(0, GridUnitType.Star)),
+                (null, new GridLength(0, GridUnitType.Star)),
+                (null, new GridLength(0, GridUnitType.Star)));
+
+            var scope = new Grid();
+            scope.Children.Add(grid);
+
+            var root = new Grid();
+            root.SetValue(Grid.IsSharedSizeScopeProperty, false);
+            root.Children.Add(scope);
+
+            grid.Measure(new Size(200, 200));
+            grid.Arrange(new Rect(new Point(), new Point(200, 200)));
+            PrintColumnDefinitions(grid);
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == null), cd => Assert.Equal(50, cd.ActualWidth));
+        }
+
+        [WpfFact]
+        public void SharedSize_Grid_GridLength_Same_Size_Pixel_0()
+        {
+            var grid = CreateGrid(
+                ("A", new GridLength()),
+                ("A", new GridLength()),
+                ("A", new GridLength()),
+                ("A", new GridLength()));
+
+            var scope = new Grid();
+            scope.Children.Add(grid);
+
+            var root = new Grid();
+            root.SetValue(Grid.IsSharedSizeScopeProperty, true);
+            root.Children.Add(scope);
+
+            grid.Measure(new Size(200, 200));
+            grid.Arrange(new Rect(new Point(), new Point(200, 200)));
+            PrintColumnDefinitions(grid);
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(0, cd.ActualWidth));
+        }
+
+        [WpfFact]
+        public void SharedSize_Grid_GridLength_Same_Size_Pixel_50()
+        {
+            var grid = CreateGrid(
+                ("A", new GridLength(50)),
+                ("A", new GridLength(50)),
+                ("A", new GridLength(50)),
+                ("A", new GridLength(50)));
+
+            var scope = new Grid();
+            scope.Children.Add(grid);
+
+            var root = new Grid();
+            root.SetValue(Grid.IsSharedSizeScopeProperty, true);
+            root.Children.Add(scope);
+
+            grid.Measure(new Size(200, 200));
+            grid.Arrange(new Rect(new Point(), new Point(200, 200)));
+            PrintColumnDefinitions(grid);
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(50, cd.ActualWidth));
+        }
+
+        [WpfFact]
+        public void SharedSize_Grid_GridLength_Same_Size_Auto()
+        {
+            var grid = CreateGrid(
+                ("A", new GridLength(0, GridUnitType.Auto)),
+                ("A", new GridLength(0, GridUnitType.Auto)),
+                ("A", new GridLength(0, GridUnitType.Auto)),
+                ("A", new GridLength(0, GridUnitType.Auto)));
+
+            var scope = new Grid();
+            scope.Children.Add(grid);
+
+            var root = new Grid();
+            root.SetValue(Grid.IsSharedSizeScopeProperty, true);
+            root.Children.Add(scope);
+
+            grid.Measure(new Size(200, 200));
+            grid.Arrange(new Rect(new Point(), new Point(200, 200)));
+            PrintColumnDefinitions(grid);
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(50, cd.ActualWidth));
+        }
+
+        [WpfFact]
+        public void SharedSize_Grid_GridLength_Same_Size_Auto()
+        {
+            var grid = CreateGrid(
+                ("A", new GridLength(0, GridUnitType.Auto)),
+                ("A", new GridLength(0, GridUnitType.Auto)),
+                ("A", new GridLength(0, GridUnitType.Auto)),
+                ("A", new GridLength(0, GridUnitType.Auto)));
+
+            var scope = new Grid();
+            scope.Children.Add(grid);
+
+            var root = new Grid();
+            root.SetValue(Grid.IsSharedSizeScopeProperty, true);
+            root.Children.Add(scope);
+
+            grid.Measure(new Size(200, 200));
+            grid.Arrange(new Rect(new Point(), new Point(200, 200)));
+            PrintColumnDefinitions(grid);
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(50, cd.ActualWidth));
+        }
+
+        [WpfFact]
+        public void SharedSize_Grid_GridLength_Same_Size_Star()
+        {
+            var grid = CreateGrid(
+                ("A", new GridLength(0, GridUnitType.Star)),
+                ("A", new GridLength(0, GridUnitType.Star)),
+                ("A", new GridLength(0, GridUnitType.Star)),
+                ("A", new GridLength(0, GridUnitType.Star)));
+
+            var scope = new Grid();
+            scope.Children.Add(grid);
+
+            var root = new Grid();
+            root.SetValue(Grid.IsSharedSizeScopeProperty, true);
+            root.Children.Add(scope);
+
+            grid.Measure(new Size(200, 200));
+            grid.Arrange(new Rect(new Point(), new Point(200, 200)));
+            PrintColumnDefinitions(grid);
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(50, cd.ActualWidth));
+        }
+
         // [WpfFact]
         // public void Size_Propagation_Is_Constrained_To_Innermost_Scope()
         // {
