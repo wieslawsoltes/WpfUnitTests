@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using Xunit;
 using Xunit.Abstractions;
@@ -14,11 +15,14 @@ namespace WpfWrapPanelTest
 {
     public static class FrameworkElementExtensions
     {
+        public static Rect BoundsRelativeTo(this FrameworkElement element, Visual relativeTo)
+        {
+            return element.TransformToVisual(relativeTo).TransformBounds(LayoutInformation.GetLayoutSlot(element));
+        }
+
         public static Rect BoundsRelativeTo(this UIElement element, Visual relativeTo)
         {
-          return
-            element.TransformToVisual(relativeTo)
-                   .TransformBounds(LayoutInformation.GetLayoutSlot(element));
+            return BoundsRelativeTo((FrameworkElement)element, relativeTo);
         }
     }
 
