@@ -94,17 +94,17 @@ namespace WpfGridTest
             grid.Measure(new Size(200, 200));
             grid.Arrange(new Rect(new Point(), new Point(200, 200)));
             PrintColumnDefinitions(grid);
-            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == null), cd => Assert.Equal(50, cd.ActualWidth));
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == null), cd => Assert.Equal(0, cd.ActualWidth));
         }
 
         [WpfFact]
         public void Grid_GridLength_Same_Size_Star()
         {
             var grid = CreateGrid(
-                (null, new GridLength(0, GridUnitType.Star)),
-                (null, new GridLength(0, GridUnitType.Star)),
-                (null, new GridLength(0, GridUnitType.Star)),
-                (null, new GridLength(0, GridUnitType.Star)));
+                (null, new GridLength(1, GridUnitType.Star)),
+                (null, new GridLength(1, GridUnitType.Star)),
+                (null, new GridLength(1, GridUnitType.Star)),
+                (null, new GridLength(1, GridUnitType.Star)));
 
             var scope = new Grid();
             scope.Children.Add(grid);
@@ -182,17 +182,17 @@ namespace WpfGridTest
             grid.Measure(new Size(200, 200));
             grid.Arrange(new Rect(new Point(), new Point(200, 200)));
             PrintColumnDefinitions(grid);
-            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(50, cd.ActualWidth));
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(0, cd.ActualWidth));
         }
 
         [WpfFact]
         public void SharedSize_Grid_GridLength_Same_Size_Star()
         {
             var grid = CreateGrid(
-                ("A", new GridLength(0, GridUnitType.Star)),
-                ("A", new GridLength(0, GridUnitType.Star)),
-                ("A", new GridLength(0, GridUnitType.Star)),
-                ("A", new GridLength(0, GridUnitType.Star)));
+                ("A", new GridLength(1, GridUnitType.Star)),
+                ("A", new GridLength(1, GridUnitType.Star)),
+                ("A", new GridLength(1, GridUnitType.Star)),
+                ("A", new GridLength(1, GridUnitType.Star)));
 
             var scope = new Grid();
             scope.Children.Add(grid);
