@@ -20,6 +20,16 @@ namespace WpfGridTest
             this.output = output;
         }
 
+        private void PrintColumnDefinitions(ColumnDefinitionCollection cds)
+        {
+            output.WriteLine($"[ColumnDefinitions]");
+            for (int i = 0; i < cds.Count; i++)
+            {
+                var cd = cds[i];
+                output.WriteLine($"[{i}] SharedSizeGroup: {cd.ActualWidth} SharedSizeGroup: {cd.SharedSizeGroup}");
+            }
+        }
+
         // [WpfFact]
         // public void Size_Propagation_Is_Constrained_To_Innermost_Scope()
         // {
@@ -59,29 +69,22 @@ namespace WpfGridTest
 
             root.Measure(new Size(50, 50));
             root.Arrange(new Rect(new Point(), new Point(50, 50)));
+            PrintColumnDefinitions(grids[0].ColumnDefinitions);
             Assert.Equal(1, grids[0].ColumnDefinitions[0].ActualWidth);
 
             grids[0].ColumnDefinitions[0].SharedSizeGroup = "A";
 
             root.Measure(new Size(51, 51));
             root.Arrange(new Rect(new Point(), new Point(51, 51)));
+            PrintColumnDefinitions(grids[0].ColumnDefinitions);
             Assert.Equal(31, grids[0].ColumnDefinitions[0].ActualWidth);
 
             grids[0].ColumnDefinitions[0].SharedSizeGroup = null;
 
             root.Measure(new Size(52, 52));
             root.Arrange(new Rect(new Point(), new Point(52, 52)));
+            PrintColumnDefinitions(grids[0].ColumnDefinitions);
             Assert.Equal(0, grids[0].ColumnDefinitions[0].ActualWidth);
-        }
-
-        private void PrintColumnDefinitions(ColumnDefinitionCollection cds)
-        {
-            output.WriteLine($"[ColumnDefinitions]");
-            foreach (int i = 0; i < cds.Count; i++)
-            {
-                var cd = cds[i];
-                output.WriteLine($"[{i}] SharedSizeGroup: {cd.ActualWidth} SharedSizeGroup: {cd.SharedSizeGroup}");
-            }
         }
 
         [WpfFact]
