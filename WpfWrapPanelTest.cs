@@ -14,7 +14,7 @@ namespace WpfWrapPanelTest
 {
     public static class FrameworkElementExtensions
     {
-        public static Rect BoundsRelativeTo(this FrameworkElement element, Visual relativeTo)
+        public static Rect BoundsRelativeTo(this UIElement, Visual relativeTo)
         {
           return
             element.TransformToVisual(relativeTo)
@@ -47,7 +47,7 @@ namespace WpfWrapPanelTest
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             target.Arrange(new Rect(target.DesiredSize));
 
-            Assert.Equal(new Size(100, 100), new Size(target.ActualWidth, target.ActualHeigth));
+            Assert.Equal(new Size(100, 100), new Size(target.ActualWidth, target.ActualHeight));
             Assert.Equal(new Rect(0, 0, 100, 50), target.Children[0].BoundsRelativeTo(target));
             Assert.Equal(new Rect(0, 50, 100, 50), target.Children[1].BoundsRelativeTo(target));
         }
@@ -68,7 +68,7 @@ namespace WpfWrapPanelTest
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             target.Arrange(new Rect(target.DesiredSize));
 
-            Assert.Equal(new Size(200, 50), new Size(target.ActualWidth, target.ActualHeigth));
+            Assert.Equal(new Size(200, 50), new Size(target.ActualWidth, target.ActualHeight));
             Assert.Equal(new Rect(0, 0, 100, 50), target.Children[0].BoundsRelativeTo(target));
             Assert.Equal(new Rect(100, 0, 100, 50), target.Children[1].BoundsRelativeTo(target));
         }
@@ -90,7 +90,7 @@ namespace WpfWrapPanelTest
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             target.Arrange(new Rect(target.DesiredSize));
 
-            Assert.Equal(new Size(100, 120), new Size(target.ActualWidth, target.ActualHeigth));
+            Assert.Equal(new Size(100, 120), new Size(target.ActualWidth, target.ActualHeight));
             Assert.Equal(new Rect(0, 0, 100, 50), target.Children[0].BoundsRelativeTo(target));
             Assert.Equal(new Rect(0, 50, 100, 50), target.Children[1].BoundsRelativeTo(target));
         }
@@ -112,7 +112,7 @@ namespace WpfWrapPanelTest
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             target.Arrange(new Rect(target.DesiredSize));
 
-            Assert.Equal(new Size(200, 60), new Size(target.ActualWidth, target.ActualHeigth));
+            Assert.Equal(new Size(200, 60), new Size(target.ActualWidth, target.ActualHeight));
             Assert.Equal(new Rect(0, 0, 100, 50), target.Children[0].BoundsRelativeTo(target));
             Assert.Equal(new Rect(100, 0, 100, 50), target.Children[1].BoundsRelativeTo(target));
         }
