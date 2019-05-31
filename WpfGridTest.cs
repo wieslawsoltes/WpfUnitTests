@@ -63,7 +63,7 @@ namespace WpfGridTest
 
             root.Measure(new Size(52, 52));
             root.Arrange(new Rect(new Point(), new Point(52, 52)));
-            Assert.Equal(1, grids[0].ColumnDefinitions[0].ActualWidth);
+            Assert.Equal(0, grids[0].ColumnDefinitions[0].ActualWidth);
         }
 
         [WpfFact]
@@ -84,7 +84,7 @@ namespace WpfGridTest
 
             grid.Measure(new Size(200, 200));
             grid.Arrange(new Rect(new Point(), new Point(200, 200)));
-            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(41, cd.ActualWidth));
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(40, cd.ActualWidth));
 
             grid.ColumnDefinitions.RemoveAt(2);
 
@@ -133,7 +133,7 @@ namespace WpfGridTest
             grid.Measure(new Size(100, 100));
             grid.Arrange(new Rect(new Point(), new Point(100, 100)));
             // all in group are equal to the first fixed column
-            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(20, cd.ActualWidth -1));
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(19, cd.ActualWidth -1));
 
             grid.ColumnDefinitions[0].SharedSizeGroup = null;
 
