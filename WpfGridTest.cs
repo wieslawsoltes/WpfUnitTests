@@ -10,7 +10,7 @@ using Xunit;
 
 namespace WpfGridTest
 {
-    public class WpfGridTestAppUnitTests
+    public class WpfGridTest
     { 
         // [Fact]
         // public void Size_Propagation_Is_Constrained_To_Innermost_Scope()
