@@ -26,7 +26,7 @@ namespace WpfGridTest
             for (int i = 0; i < cds.Count; i++)
             {
                 var cd = cds[i];
-                output.WriteLine($"[{i}] SharedSizeGroup: {cd.ActualWidth} SharedSizeGroup: {cd.SharedSizeGroup}");
+                output.WriteLine($"[{i}] ActualWidth: {cd.ActualWidth} SharedSizeGroup: {cd.SharedSizeGroup}");
             }
         }
 
