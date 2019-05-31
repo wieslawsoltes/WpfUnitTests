@@ -42,10 +42,10 @@ namespace WpfWrapPanelTest
             {
                 Width = 100,
                 Children =
-                            {
-                                new Border { Height = 50, Width = 100 },
-                                new Border { Height = 50, Width = 100 },
-                            }
+                {
+                    new Border { Height = 50, Width = 100 },
+                    new Border { Height = 50, Width = 100 },
+                }
             };
 
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
@@ -63,10 +63,10 @@ namespace WpfWrapPanelTest
             {
                 Width = 200,
                 Children =
-                            {
-                                new Border { Height = 50, Width = 100 },
-                                new Border { Height = 50, Width = 100 },
-                            }
+                {
+                    new Border { Height = 50, Width = 100 },
+                    new Border { Height = 50, Width = 100 },
+                }
             };
 
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
@@ -85,10 +85,10 @@ namespace WpfWrapPanelTest
                 Orientation = Orientation.Vertical,
                 Height = 120,
                 Children =
-                            {
-                                new Border { Height = 50, Width = 100 },
-                                new Border { Height = 50, Width = 100 },
-                            }
+                {
+                    new Border { Height = 50, Width = 100 },
+                    new Border { Height = 50, Width = 100 },
+                }
             };
 
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
@@ -107,10 +107,10 @@ namespace WpfWrapPanelTest
                 Orientation = Orientation.Vertical,
                 Height = 60,
                 Children =
-                            {
-                                new Border { Height = 50, Width = 100 },
-                                new Border { Height = 50, Width = 100 },
-                            }
+                {
+                    new Border { Height = 50, Width = 100 },
+                    new Border { Height = 50, Width = 100 },
+                }
             };
 
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
