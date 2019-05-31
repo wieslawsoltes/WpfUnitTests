@@ -1007,7 +1007,7 @@ namespace WpfGridTest
             grid.Arrange(new Rect(new Point(), new Point(100, 100)));
             PrintColumnDefinitions(grid);
             // all in group are equal to the first fixed column
-            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(19, cd.ActualWidth - 1));
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(20, cd.ActualWidth));
 
             grid.ColumnDefinitions[0].SharedSizeGroup = null;
 
@@ -1015,17 +1015,17 @@ namespace WpfGridTest
             grid.Arrange(new Rect(new Point(), new Point(100, 100)));
             PrintColumnDefinitions(grid);
             // all in group are equal to width (MinWidth) of the sizer in the second column
-            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(20, cd.ActualWidth));
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(6 + 1 * 6, cd.ActualWidth));
 
             // NOTE: THIS IS BROKEN IN WPF
-            //grid.ColumnDefinitions[1].SharedSizeGroup = null;
+            grid.ColumnDefinitions[1].SharedSizeGroup = null;
 
             // NOTE: THIS IS BROKEN IN WPF
-            //grid.Measure(new Size(double.PositiveInfinity, 100));
-            //grid.Arrange(new Rect(new Point(), new Point(100, 100)));
-            //PrintColumnDefinitions(grid);
+            grid.Measure(new Size(double.PositiveInfinity, 100));
+            grid.Arrange(new Rect(new Point(), new Point(100, 100)));
+            PrintColumnDefinitions(grid);
             // with no constraint star columns default to the MinWidth of the sizer in the column
-            //Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(0, cd.ActualWidth));
+            Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(6 + 2 * 6, cd.ActualWidth));
         }
 
         [WpfFact]
@@ -1137,6 +1137,7 @@ namespace WpfGridTest
             var ctrl = new Control { MinWidth = size, MinHeight = size };
             ctrl.SetValue(Grid.ColumnProperty, column);
             grid.Children.Add(ctrl);
+            output.WriteLine($"[AddSizer] Column: {column} MinWidth: {size} MinHeight: {size}");
             return ctrl;
         }
     }
