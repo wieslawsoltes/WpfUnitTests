@@ -17,7 +17,7 @@ namespace WpfWrapPanelTest
     {
         public static Rect BoundsRelativeTo(this FrameworkElement element, Visual relativeTo)
         {
-            return element.TransformToVisual(relativeTo).TransformBounds(LayoutInformation.GetLayoutSlot(element));
+            return element.TransformToVisual(relativeTo).TransformBounds(new Rect(element.RenderSize));
         }
 
         public static Rect BoundsRelativeTo(this UIElement element, Visual relativeTo)
