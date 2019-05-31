@@ -20,12 +20,13 @@ namespace WpfGridTest
             this.output = output;
         }
 
-        private void PrintColumnDefinitions(ColumnDefinitionCollection cds)
+        private void PrintColumnDefinitions(Grid grid)
         {
+            output.WriteLine($"[Grid] ActualWidth: {grid.ActualWidth} ActualHeight: {grid.ActualHeight}");
             output.WriteLine($"[ColumnDefinitions]");
-            for (int i = 0; i < cds.Count; i++)
+            for (int i = 0; i < grid.ColumnDefinitions.Count; i++)
             {
-                var cd = cds[i];
+                var cd = grid.ColumnDefinitions[i];
                 output.WriteLine($"[{i}] ActualWidth: {cd.ActualWidth} SharedSizeGroup: {cd.SharedSizeGroup}");
             }
         }
@@ -69,21 +70,21 @@ namespace WpfGridTest
 
             root.Measure(new Size(50, 50));
             root.Arrange(new Rect(new Point(), new Point(50, 50)));
-            PrintColumnDefinitions(grids[0].ColumnDefinitions);
+            PrintColumnDefinitions(grids[0]);
             Assert.Equal(0, grids[0].ColumnDefinitions[0].ActualWidth);
 
             grids[0].ColumnDefinitions[0].SharedSizeGroup = "A";
 
             root.Measure(new Size(51, 51));
             root.Arrange(new Rect(new Point(), new Point(51, 51)));
-            PrintColumnDefinitions(grids[0].ColumnDefinitions);
+            PrintColumnDefinitions(grids[0]);
             Assert.Equal(30, grids[0].ColumnDefinitions[0].ActualWidth);
 
             grids[0].ColumnDefinitions[0].SharedSizeGroup = null;
 
             root.Measure(new Size(52, 52));
             root.Arrange(new Rect(new Point(), new Point(52, 52)));
-            PrintColumnDefinitions(grids[0].ColumnDefinitions);
+            PrintColumnDefinitions(grids[0]);
             Assert.Equal(0, grids[0].ColumnDefinitions[0].ActualWidth);
         }
 
@@ -105,35 +106,35 @@ namespace WpfGridTest
 
             grid.Measure(new Size(200, 200));
             grid.Arrange(new Rect(new Point(), new Point(200, 200)));
-            PrintColumnDefinitions(grid.ColumnDefinitions);
+            PrintColumnDefinitions(grid);
             Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(40, cd.ActualWidth));
 
             grid.ColumnDefinitions.RemoveAt(2);
 
             grid.Measure(new Size(200, 200));
             grid.Arrange(new Rect(new Point(), new Point(200, 200)));
-            PrintColumnDefinitions(grid.ColumnDefinitions);
+            PrintColumnDefinitions(grid);
             Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(30, cd.ActualWidth));
 
             grid.ColumnDefinitions.Insert(1, new ColumnDefinition { Width = new GridLength(30), SharedSizeGroup = "A" });
 
             grid.Measure(new Size(200, 200));
             grid.Arrange(new Rect(new Point(), new Point(200, 200)));
-            PrintColumnDefinitions(grid.ColumnDefinitions);
+            PrintColumnDefinitions(grid);
             Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(30, cd.ActualWidth));
 
             grid.ColumnDefinitions[1] = new ColumnDefinition { Width = new GridLength(10), SharedSizeGroup = "A" };
 
             grid.Measure(new Size(200, 200));
             grid.Arrange(new Rect(new Point(), new Point(200, 200)));
-            PrintColumnDefinitions(grid.ColumnDefinitions);
+            PrintColumnDefinitions(grid);
             Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(35, cd.ActualWidth));
 
             grid.ColumnDefinitions[1] = new ColumnDefinition { Width = new GridLength(50), SharedSizeGroup = "A" };
 
             grid.Measure(new Size(200, 200));
             grid.Arrange(new Rect(new Point(), new Point(200, 200)));
-            PrintColumnDefinitions(grid.ColumnDefinitions);
+            PrintColumnDefinitions(grid);
             Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(0, cd.ActualWidth));
         }
 
@@ -158,7 +159,7 @@ namespace WpfGridTest
 
             grid.Measure(new Size(100, 100));
             grid.Arrange(new Rect(new Point(), new Point(100, 100)));
-            PrintColumnDefinitions(grid.ColumnDefinitions);
+            PrintColumnDefinitions(grid);
             // all in group are equal to the first fixed column
             Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(19, cd.ActualWidth -1));
 
@@ -166,7 +167,7 @@ namespace WpfGridTest
 
             grid.Measure(new Size(100, 100));
             grid.Arrange(new Rect(new Point(), new Point(100, 100)));
-            PrintColumnDefinitions(grid.ColumnDefinitions);
+            PrintColumnDefinitions(grid);
             // all in group are equal to width (MinWidth) of the sizer in the second column
             Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(20, cd.ActualWidth));
 
@@ -174,7 +175,7 @@ namespace WpfGridTest
 
             grid.Measure(new Size(double.PositiveInfinity, 100));
             grid.Arrange(new Rect(new Point(), new Point(100, 100)));
-            PrintColumnDefinitions(grid.ColumnDefinitions);
+            PrintColumnDefinitions(grid);
             // with no constraint star columns default to the MinWidth of the sizer in the column
             Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(0, cd.ActualWidth));
         }
