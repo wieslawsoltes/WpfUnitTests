@@ -10,11 +10,7 @@ using Xunit;
 
 namespace WpfGridTest
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    
-    public partial class App : Application
+    public class WpfGridTestAppUnitTests
     { 
         // [Fact]
         // public void Size_Propagation_Is_Constrained_To_Innermost_Scope()
@@ -38,7 +34,6 @@ namespace WpfGridTest
         //     root.Arrange(new Rect(new Point(), new Point(50, 50)));
         //     Assert.Equal(1, outerGrid.ColumnDefinitions[0].ActualWidth);
         // }
-
 
         [Fact]
         public void Size_Group_Changes_Are_Tracked()
