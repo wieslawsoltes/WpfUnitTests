@@ -1,0 +1,20 @@
+pool:
+  name: Hosted Windows 2019 with VS2019
+steps:
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core sdk 3.0.100-preview5-011568'
+  inputs:
+    version: '3.0.100-preview5-011568'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    projects: WpfGridTest.csproj
+    arguments: '-c Debug -f netcoreapp3.0'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: test
+    projects: WpfGridTest.csproj
+    arguments: '-c Debug -f netcoreapp3.0'
