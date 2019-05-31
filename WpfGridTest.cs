@@ -12,7 +12,7 @@ namespace WpfGridTest
 {
     public class WpfGridTest
     { 
-        // [Fact]
+        // [WpfFact]
         // public void Size_Propagation_Is_Constrained_To_Innermost_Scope()
         // {
         //     var grids = new[] { CreateGrid("A", null), CreateGrid(("A", new GridLength(30)), (null, new GridLength())) };
@@ -35,7 +35,7 @@ namespace WpfGridTest
         //     Assert.Equal(1, outerGrid.ColumnDefinitions[0].ActualWidth);
         // }
 
-        [Fact]
+        [WpfFact]
         public void Size_Group_Changes_Are_Tracked()
         {
             var grids = new[] {
@@ -66,7 +66,7 @@ namespace WpfGridTest
             Assert.Equal(1, grids[0].ColumnDefinitions[0].ActualWidth);
         }
 
-        [Fact]
+        [WpfFact]
         public void Collection_Changes_Are_Tracked()
         {
             var grid = CreateGrid(
@@ -111,7 +111,7 @@ namespace WpfGridTest
             Assert.All(grid.ColumnDefinitions.Where(cd => cd.SharedSizeGroup == "A"), cd => Assert.Equal(50, cd.ActualWidth));
         }
 
-        [Fact]
+        [WpfFact]
         public void Size_Priorities_Are_Maintained()
         {
             var sizers = new List<Control>();
@@ -191,7 +191,5 @@ namespace WpfGridTest
             grid.Children.Add(ctrl);
             return ctrl;
         }
-    
-
     }
 }
