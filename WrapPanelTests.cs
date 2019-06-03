@@ -1,10 +1,10 @@
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace WpfWrapPanelTest
+namespace WpfUnitTests
 {
     public static class FrameworkElementExtensions
     {
@@ -19,11 +19,11 @@ namespace WpfWrapPanelTest
         }
     }
 
-    public class WpfWrapPanelTest
+    public class WrapPanelTests
     {
         private readonly ITestOutputHelper output;
 
-        public WpfWrapPanelTest(ITestOutputHelper output)
+        public WrapPanelTests(ITestOutputHelper output)
         {
             this.output = output;
         }
