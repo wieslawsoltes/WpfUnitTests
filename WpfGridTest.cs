@@ -6,13 +6,13 @@ using System.Windows.Controls;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace WpfGridTest
+namespace WpfUnitTests
 {
-    public class WpfGridTest
+    public class GridTests
     {
         private readonly ITestOutputHelper output;
 
-        public WpfGridTest(ITestOutputHelper output)
+        public GridTests(ITestOutputHelper output)
         {
             this.output = output;
         }
