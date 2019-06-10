@@ -1,24 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace WpfUnitTests
 {
-    public static class FrameworkElementExtensions
-    {
-        public static Rect BoundsRelativeTo(this FrameworkElement element, Visual relativeTo)
-        {
-            return element.TransformToVisual(relativeTo).TransformBounds(new Rect(element.RenderSize));
-        }
-
-        public static Rect BoundsRelativeTo(this UIElement element, Visual relativeTo)
-        {
-            return BoundsRelativeTo((FrameworkElement)element, relativeTo);
-        }
-    }
-
     public class WrapPanelTests
     {
         private readonly ITestOutputHelper output;
