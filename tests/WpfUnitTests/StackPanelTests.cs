@@ -129,10 +129,10 @@ namespace WpfUnitTests
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             target.Arrange(new Rect(target.DesiredSize));
 
-            Assert.Equal(new Size(120, 60), target.BoundsRelativeTo(target).Size);
-            Assert.Equal(new Rect(0, 0, 120, 20), target.Children[0].BoundsRelativeTo(target));
-            Assert.Equal(new Rect(0, 20, 120, 30), target.Children[1].BoundsRelativeTo(target));
-            Assert.Equal(new Rect(0, 50, 120, 50), target.Children[2].BoundsRelativeTo(target));
+            Assert.Equal(new Size(120, 60), target.ClippedBoundsRelativeTo(target).Size);
+            Assert.Equal(new Rect(0, 0, 120, 20), target.Children[0].ClippedBoundsRelativeTo(target));
+            Assert.Equal(new Rect(0, 20, 120, 30), target.Children[1].ClippedBoundsRelativeTo(target));
+            Assert.Equal(new Rect(0, 50, 120, 50), target.Children[2].ClippedBoundsRelativeTo(target));
         }
 
         [WpfFact]
@@ -153,10 +153,10 @@ namespace WpfUnitTests
             target.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             target.Arrange(new Rect(target.DesiredSize));
 
-            Assert.Equal(new Size(60, 120), target.BoundsRelativeTo(target).Size);
-            Assert.Equal(new Rect(0, 0, 20, 120), target.Children[0].BoundsRelativeTo(target));
-            Assert.Equal(new Rect(20, 0, 30, 120), target.Children[1].BoundsRelativeTo(target));
-            Assert.Equal(new Rect(50, 0, 50, 120), target.Children[2].BoundsRelativeTo(target));
+            Assert.Equal(new Size(60, 120), target.ClippedBoundsRelativeTo(target).Size);
+            Assert.Equal(new Rect(0, 0, 20, 120), target.Children[0].ClippedBoundsRelativeTo(target));
+            Assert.Equal(new Rect(20, 0, 30, 120), target.Children[1].ClippedBoundsRelativeTo(target));
+            Assert.Equal(new Rect(50, 0, 50, 120), target.Children[2].ClippedBoundsRelativeTo(target));
         }
 
         [WpfFact]
@@ -215,19 +215,19 @@ namespace WpfUnitTests
 
             target.Arrange(new Rect(target.DesiredSize));
 
-            var bounds = target.Children.AsEnumerable().Select(x => x.BoundsRelativeTo(target)).ToArray();
+            var bounds = target.Children.AsEnumerable().Select(x => x.ClippedBoundsRelativeTo(target)).ToArray();
 
             Assert.Equal(
                 new[]
                 {
                     new Rect(0, 0, 50, 10),
-                    new Rect(0, 10, 150, 10),
+                    new Rect(0, 10, 100, 10),
                     new Rect(25, 20, 50, 10),
-                    new Rect(-25, 30, 150, 10),
+                    new Rect(0, 30, 100, 10),
                     new Rect(50, 40, 50, 10),
-                    new Rect(-50, 50, 150, 10),
+                    new Rect(0, 50, 100, 10),
                     new Rect(0, 60, 100, 10),
-                    new Rect(0, 70, 150, 10),
+                    new Rect(0, 70, 100, 10),
 
                 }, bounds);
         }
@@ -288,19 +288,19 @@ namespace WpfUnitTests
 
             target.Arrange(new Rect(target.DesiredSize));
 
-            var bounds = target.Children.AsEnumerable().Select(x => x.BoundsRelativeTo(target)).ToArray();
+            var bounds = target.Children.AsEnumerable().Select(x => x.ClippedBoundsRelativeTo(target)).ToArray();
 
             Assert.Equal(
                 new[]
                 {
                     new Rect(0, 0, 10, 50),
-                    new Rect(10, 0, 10, 150),
+                    new Rect(10, 0, 10, 100),
                     new Rect(20, 25, 10, 50),
-                    new Rect(30, -25, 10, 150),
+                    new Rect(30, 0, 10, 100),
                     new Rect(40, 50, 10, 50),
-                    new Rect(50, -50, 10, 150),
+                    new Rect(50, 0, 10, 100),
                     new Rect(60, 0, 10, 100),
-                    new Rect(70, 0, 10, 150),
+                    new Rect(70, 0, 10, 100),
                 }, bounds);
         }
 
