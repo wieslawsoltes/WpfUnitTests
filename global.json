@@ -1,8 +1,8 @@
 {
   "tools": {
-    "dotnet": "3.0.100"
+    "dotnet": "5.0.100"
   },
   "sdk": {
-    "version": "3.0.100"
+    "version": "5.0.100"
   }
 }
