@@ -1,8 +1,7 @@
 {
-  "tools": {
-    "dotnet": "5.0.100"
-  },
   "sdk": {
-    "version": "5.0.100"
+    "version": "5.0.400",
+    "rollForward": "latestMinor",
+    "allowPrerelease": true
   }
 }
